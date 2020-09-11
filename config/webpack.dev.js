@@ -11,8 +11,12 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
-    contentBase: 'dist'
+    contentBase: 'dist',
+
+    // show error overlay
+    overlay: true
   },
+
   module: {
     rules: [
       {
