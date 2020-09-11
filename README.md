@@ -32,3 +32,8 @@ Requirements: `npm install -g webpack webpack-cli`.
 - `main.js` requires a html -> parsing error
 - `npm install -s html-loader extract-loader file-loader`
 - config > module > rules
+
+##### Image loader
+- `index.html` requires an image with relative address
+- config > module > ... > html-loader > options
+- `npm install -s html-loader extract-loader file-loader`

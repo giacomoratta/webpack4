@@ -45,10 +45,35 @@ module.exports = {
           },
           {
             // does the linting
-            loader: 'html-loader'
+            loader: 'html-loader',
+            options: {
+              attributes: {
+                list: [
+                  // All default supported tags and attributes
+                  '...',
+                  {
+                    tag: 'img',
+                    attribute: 'data-src',
+                    type: 'src',
+                  }
+                ]
+              }
+            }
           }
         ]
       },
+      {
+        test: /\.(jpg|gif|png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              // hash not required, just example
+              name: "images/[name]-[hash:8].[ext]"
+            }
+          }
+        ]
+      }
     ]
   }
 }

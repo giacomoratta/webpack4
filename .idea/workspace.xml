@@ -11,12 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e5b7a3e-0e65-4d27-bdd5-5d13ada27228" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/webpack.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599715034402</updated>
-      <workItem from="1599715035447" duration="4088000" />
+      <workItem from="1599715035447" duration="5540000" />
     </task>
     <servers />
   </component>
@@ -83,6 +82,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="1185" y="239" width="543" height="642" key="#CSS" timestamp="1599804013376">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="1185" y="239" width="543" height="642" key="#CSS/72.27.1848.1053@72.27.1848.1053" timestamp="1599804013376" />
     <state x="1234" y="55" width="441" height="1010" key="#HTML" timestamp="1599802042792">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
