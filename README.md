@@ -11,9 +11,14 @@ Requirements: `npm install -g webpack webpack-cli`.
 - `publicPath` = the starting path
 - `contentBase` = content directory
 
-###### Dev-server
+##### Dev-server
 - install `webpack-dev-server` (see config file)
 - **hot reloading**: pages reloaded after each change in the code
 - inspector > network: we have 2 files called `sockjs-node/...js` needed for detecting changes
 - start dev server: `webpack-dev-server --config=config/webpack.dev.js`
 - access dev server: `http://localhost:8080/`
+
+##### CSS loader
+- `main.js` requires a css -> parsing error
+- `npm install style-loader css-loader`
+- config > module > rules
