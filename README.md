@@ -38,13 +38,32 @@ Requirements: `npm install -g webpack webpack-cli`.
 - config > module > ... > html-loader > options
 - `npm install -s html-loader extract-loader file-loader`
 
-##### Babel and transpilers
+## Babel and Polyfil
 - transpilers allow using modern js into old browser
+
+##### Setup Babel
 - go to https://babeljs.io to try live
-- `npm install -s babel-core babel-cli`
-- `npm install -s babel-loader babel-loader@7`
 - create `.babelrc` file (list of babel plugins)
-- babel provides plugins for any feature
-    - `npm install -s babel-plugin-transform-es2015-arrow-functions`
 - show babel output: `babel src/main.js`
 - see project config for `babel-loader`
+- `npm install -s babel-core babel-cli`
+- `npm install -s babel-loader babel-loader@7`
+
+##### Plugins
+1. babel provides plugins for any feature, as node modules `npm install -s ...`
+    - `babel-plugin-transform-es2015-arrow-functions`
+    - `babel-plugin-async-to-promises`
+    - `babel-polyfil`:
+        - used in webpack config like:
+          ```
+          module.exports = {
+            entry: {
+              main: ['babel-polyfil','./src/main.js']
+            ...
+          ```
+        - better to use only the polyfil we need to avoid a big bundle
+        
+2. babel provides some presets to avoid many manual installations
+   - `npm install -s babel-preset-env`
+   - `npm install -s babel-plugin-transform-runtime`
+   
