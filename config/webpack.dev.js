@@ -1,6 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
 
+// hot-reloading when html changes
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   entry: {
     main: './src/main.js'
@@ -46,16 +49,11 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: "[name].html"
-            }
-          },
-          {
-            // keep file separated from bundle
-            loader: 'extract-loader'
-          },
+
+          // both loaders replaced by HTMLWebpackPlugin which does the same functions
+          // { loader: 'file-loader', options: { name: "[name].html" } },
+          // { loader: 'extract-loader' },
+
           {
             // does the linting
             loader: 'html-loader',
@@ -91,6 +89,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin() // needed for hot-reloading
+    new webpack.HotModuleReplacementPlugin(), // needed for hot-reloading
+    new HTMLWebpackPlugin({
+      template: './src/index.html'
+    })
   ]
 }

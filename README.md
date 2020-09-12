@@ -71,3 +71,12 @@ Requirements: `npm install -g webpack webpack-cli`.
 ## Express
 - setting up a basic server
 - set-up webpack middlewares for express (order is important!)
+- express middleware for webpack auto-build
+- express middleware for webpack hot-reload (when build changes)
+- express middleware for webpack hot-reload (when static html changes)
+
+##### Nodemon
+- install globally `npm i -g nodemon`
+- nodemon watches certain directories and restart node everytime they change
+- `nodemon --watch <dir1> --watch <dir2> run-script.js`
+- changed scripts section in `package.json`
