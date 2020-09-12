@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     main: './src/main.js'
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   mode: 'development',
   output: {
     filename: '[name]-bundle.js',

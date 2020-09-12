@@ -68,15 +68,26 @@ Requirements: `npm install -g webpack webpack-cli`.
    - `npm install -s babel-plugin-transform-runtime`
    
    
-## Express
+## NodeJS
+
+#### Express
 - setting up a basic server
 - set-up webpack middlewares for express (order is important!)
 - express middleware for webpack auto-build
 - express middleware for webpack hot-reload (when build changes)
 - express middleware for webpack hot-reload (when static html changes)
 
-##### Nodemon
+#### Nodemon
 - install globally `npm i -g nodemon`
 - nodemon watches certain directories and restart node everytime they change
 - `nodemon --watch <dir1> --watch <dir2> run-script.js`
 - changed scripts section in `package.json`
+
+#### Debugging
+- add inspect to npm scripts: `"dev": "nodemon --inspect ...`
+- `chrome dev tools` shows node icon to open the nodejs inspector
+    - `sources` tab shows the entire node library
+- use `debugger` statement everywhere in nodejs code
+- added `devtool: 'source-map',` in webpack config to show in the debugger the exact place of our debugger (not in the bundle)
+    - a new file is generated (and bigger than the bundle): `main-bundle.js.map`
+    - only used during the debugging by Chrome

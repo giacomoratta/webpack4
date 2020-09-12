@@ -28,7 +28,6 @@ const staticMiddleware = express.static('dist')
 
 // 3. set middleware on express
 server.use(staticMiddleware)
-
 server.listen(8080, () => {
   console.log('Server is listening...')
 })
