@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -15,28 +16,31 @@ module.exports = {
     contentBase: 'dist',
 
     // show error overlay
-    overlay: true
+    overlay: true,
+
+    // tune webpack output
+    stats: {
+      colors: true
+    },
+
+    // hot reloading
+    hot: true
   },
 
   module: {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         use: [
-          {
-            loader: 'babel-loader'
-          }
+          { loader: 'babel-loader' }
         ]
       },
       {
         test: /\.css$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
         ]
       },
       {
@@ -84,5 +88,9 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin() // needed for hot-reloading
+  ]
 }
