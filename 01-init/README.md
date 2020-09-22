@@ -6,14 +6,14 @@ Git reference > https://github.com/lawwantsin/webpack-course-v3
 
 Requirements: `npm install -g webpack webpack-cli`.
 
-##### Basics
+#### Basics
 - `webpack --mode=development`
 - `webpack --mode=production`
 - `webpack --config=config/webpack.dev.js`
 - `publicPath` = the starting path
 - `contentBase` = content directory
 
-##### Dev-server
+#### Dev-server
 - install `webpack-dev-server` (see config file)
 - **hot reloading**: pages reloaded after each change in the code
 - inspector > network: we have 2 files called `sockjs-node/...js` needed for detecting changes
@@ -23,17 +23,17 @@ Requirements: `npm install -g webpack webpack-cli`.
 - running dev-server will not create files in `dist` directory (they will be served in memory)
     - build process will generate them
 
-##### CSS loader
+#### CSS loader
 - `main.js` requires a css -> parsing error
 - `npm install -s style-loader css-loader`
 - config > module > rules
 
-##### HTML loader
+#### HTML loader
 - `main.js` requires a html -> parsing error
 - `npm install -s html-loader extract-loader file-loader`
 - config > module > rules
 
-##### Image loader
+#### Image loader
 - `index.html` requires an image with relative address
 - config > module > ... > html-loader > options
 - `npm install -s html-loader extract-loader file-loader`
@@ -41,7 +41,7 @@ Requirements: `npm install -g webpack webpack-cli`.
 ## Babel and Polyfil
 - transpilers allow using modern js into old browser
 
-##### Setup Babel
+#### Setup Babel
 - go to https://babeljs.io to try live
 - create `.babelrc` file (list of babel plugins)
 - show babel output: `babel src/main.js`
@@ -49,7 +49,7 @@ Requirements: `npm install -g webpack webpack-cli`.
 - `npm install -s babel-core babel-cli`
 - `npm install -s babel-loader babel-loader@7`
 
-##### Plugins
+#### Plugins
 1. babel provides plugins for any feature, as node modules `npm install -s ...`
     - `babel-plugin-transform-es2015-arrow-functions`
     - `babel-plugin-async-to-promises`

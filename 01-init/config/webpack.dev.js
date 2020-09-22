@@ -65,7 +65,7 @@ module.exports = {
                   {
                     tag: 'img',
                     attribute: 'data-src',
-                    type: 'src',
+                    type: 'src'
                   }
                 ]
               }
@@ -80,7 +80,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               // hash not required, just example
-              name: "images/[name]-[hash:8].[ext]"
+              name: 'images/[name]-[hash:8].[ext]'
             }
           }
         ]
