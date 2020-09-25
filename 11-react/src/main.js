@@ -1,4 +1,5 @@
 require('babel-runtime/regenerator')
+require('react-hot-loader/patch')
 
 // set websocket connection for hot reloading
 // 'reload=true' option for client (=browser) reloading
