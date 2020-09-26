@@ -93,6 +93,17 @@ module.exports = {
             loader: "pug-loader"
           }
         ]
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          {
+            loader: "handlebars-loader",
+            query: {
+              inlineRequires: "/images/"
+            }
+          }
+        ]
       }
     ]
   },
@@ -105,7 +116,8 @@ module.exports = {
 
     new HTMLWebpackPlugin({
       // template: './src/index.ejs',
-      template: './src/index.pug',
+      // template: './src/index.pug',
+      template: './src/index.hbs',
       title: "Link's Journal"
     })
   ]

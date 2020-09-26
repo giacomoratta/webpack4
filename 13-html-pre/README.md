@@ -10,8 +10,18 @@
 - use require for ejs
 - `esModule: false` for file-loader
 
-
 ### Pug
+- install `pug` and `pug-loader`
 - created new file `index.pug`
 - added config for `pug` files
 - set `pug-loader` in webpack config
+
+### Handlebars
+- install `handlebars` and `handlebars-loader`
+- created new file `index.pug`
+- added config for `pug` files
+- set `pug-loader` in webpack config
+
+#### Problem1: images broken
+- webpack not parsing images with hash
+- add query and support for inlineRequires
