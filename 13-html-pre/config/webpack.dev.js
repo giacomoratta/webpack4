@@ -80,7 +80,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               // hash not required, just example
-              name: 'images/[name]-[hash:8].[ext]'
+              name: 'images/[name]-[hash:8].[ext]',
+              esModule: false
             }
           }
         ]
@@ -91,7 +92,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // needed for hot-reloading
     new HTMLWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.ejs',
+      title: "Link's Journal"
     })
   ]
 }
