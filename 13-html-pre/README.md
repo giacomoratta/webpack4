@@ -9,3 +9,9 @@
 - webpack not parsing images with hash
 - use require for ejs
 - `esModule: false` for file-loader
+
+
+### Pug
+- created new file `index.pug`
+- added config for `pug` files
+- set `pug-loader` in webpack config

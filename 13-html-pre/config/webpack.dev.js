@@ -85,14 +85,27 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: "pug-loader"
+          }
+        ]
       }
     ]
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // needed for hot-reloading
+
+    // Enable HMR
+    // new webpack.NamedModulesPlugin(), // deprecated
+
     new HTMLWebpackPlugin({
-      template: './src/index.ejs',
+      // template: './src/index.ejs',
+      template: './src/index.pug',
       title: "Link's Journal"
     })
   ]
