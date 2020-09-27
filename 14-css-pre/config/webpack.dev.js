@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const autoprefixer = require('autoprefixer')({})
 
 // hot-reloading when html changes
 const HTMLWebpackPlugin = require('html-webpack-plugin')
@@ -52,6 +53,25 @@ module.exports = {
           { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'sass-loader' }
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          {
+            loader: 'postcss-loader'
+          },
+          { loader: 'stylus-loader' }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' }
         ]
       },
       {
