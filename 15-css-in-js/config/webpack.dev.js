@@ -43,7 +43,18 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader' }
+          {
+            loader: 'css-loader',
+            query: {
+
+              // allows to import styles in React
+              modules: {
+
+                // avoid class name as hash NOT WORKING!!!
+                localIdentName: "[name]--[local]--[hash:base64:8]"
+              }
+            }
+          }
         ]
       },
       {

@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './main.css' // see query.modules=true (webpack config)
 
 export default class extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div onClick={this.climb.bind(this)}>
+      <div className={styles.counter}
+        onClick={this.climb.bind(this)}>
         <h1>Counter: {this.state.count}</h1>
       </div>
     )
