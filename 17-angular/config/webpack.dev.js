@@ -6,8 +6,13 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    main: './src/main.js',
-    ts: './src/index.ts'
+    /* extensions not needed because of resolve.extensions */
+    main: './src/main',
+    polyfills: './src/angular-polyfills',
+    angular: './src/angular',
+  },
+  resolve: {
+    extensions: ['.js', '.ts']
   },
   devtool: 'source-map',
   mode: 'development',
@@ -28,7 +33,10 @@ module.exports = {
     },
 
     // hot reloading
-    hot: true
+    hot: true,
+
+    // needed for Angular Routing
+    historyApiFallback: true
   },
 
   module: {
@@ -98,6 +106,14 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // needed for hot-reloading
+    new webpack.ContextReplacementPlugin(
+      // Set the context for Angular.
+      // When webpack sees angular/core, the context for imports is /src,
+      // so it does not try to import from node_modules
+      /angular(\\|\/)core/,
+      path.join(__dirname, './src'),
+      {}
+    ),
     new HTMLWebpackPlugin({
       template: './src/index.html'
     })
