@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 
 @Component({
     selector: 'root-app',
-    styles: [],
+    styles: [require('./app.component.css').toString()],
     template: require('./app.component.html')
 })
 
