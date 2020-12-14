@@ -4,6 +4,9 @@ const webpack = require('webpack')
 // hot-reloading when html changes
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
+// vue loader
+const { VueLoaderPlugin } = require('vue-loader')
+
 module.exports = {
   entry: {
     main: './src/main.js'
@@ -32,6 +35,12 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: [
+          { loader: 'vue-loader' }
+        ]
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -89,6 +98,7 @@ module.exports = {
   },
 
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(), // needed for hot-reloading
     new HTMLWebpackPlugin({
       template: './src/index.html'
