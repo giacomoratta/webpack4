@@ -33,6 +33,17 @@ module.exports = {
     hot: true
   },
 
+  resolve: {
+    alias: {
+      /* FIX for browser console error:
+           vue.runtime.esm.js:619 [Vue warn]: You are using the runtime-only build of Vue
+           where the template compiler is not available. Either pre-compile the templates
+           into render functions, or use the compiler-included build.
+      */
+      vue$: 'vue/dist/vue.esm.js'
+    }
+  },
+
   module: {
     rules: [
       {
