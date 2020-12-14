@@ -89,7 +89,10 @@ module.exports = {
             loader: 'file-loader',
             options: {
               // hash not required, just example
-              name: 'images/[name]-[hash:8].[ext]'
+              name: 'images/[name]-[hash:8].[ext]',
+
+              // solve problem with images src=[object module]
+              esModule: false
             }
           }
         ]
