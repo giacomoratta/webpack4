@@ -1,20 +1,20 @@
-const path = require("path")
-const webpack = require("webpack")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
-const isProd = process.env.NODE_ENV === "production"
+const path = require('path')
+const webpack = require('webpack')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: ['./src/main.js']
   },
-  mode: "development",
+  mode: 'development',
   output: {
-    filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: "/"
+    filename: '[name]-bundle.js',
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/'
   },
   devServer: {
-    contentBase: "dist",
+    contentBase: 'dist',
     overlay: true,
     stats: {
       colors: true
@@ -27,7 +27,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader"
+            loader: 'babel-loader'
           }
         ]
       },
@@ -35,10 +35,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader'
           }
         ]
       },
@@ -46,9 +46,9 @@ module.exports = {
         test: /\.jpg$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "images/[name].[ext]"
+              name: 'images/[name].[ext]'
             }
           }
         ]
@@ -57,7 +57,7 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
+            loader: 'html-loader'
           }
         ]
       }
@@ -66,7 +66,7 @@ module.exports = {
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/index.ejs",
+      template: './src/index.ejs',
       inject: true,
       title: "Link's Journal"
     })
