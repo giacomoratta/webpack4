@@ -1,6 +1,8 @@
 import express from 'express'
 import path from 'path'
 const server = express()
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -24,6 +26,12 @@ if (!isProd) {
   server.use(webpackHotMiddlware)
   console.log('Middleware enabled')
 }
+
+// Another piece of middleware
+server.get('*', (req, res) => {
+  const html = ReactDOMServer.renderToString(<div>Hello SSR!</div>)
+  res.send(html)
+})
 
 // In production, heroku will use only files in dist directory
 // ...but we need to build them first: npm run build

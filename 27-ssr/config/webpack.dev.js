@@ -109,13 +109,10 @@ module.exports = {
         CUSTOM_VAR1: JSON.stringify('value1-dev')
       }
     }),
-    new HTMLWebpackPlugin({
-      template: './src/index.ejs',
-      inject: true,
-      title: "Link's Journal"
-    }),
-    new BundleAnalyzerPlugin({
-      generateStatsFile: true
-    })
+    // new HTMLWebpackPlugin({
+    //   template: './src/index.ejs',
+    //   inject: true,
+    //   title: "Link's Journal"
+    // })
   ]
 }
