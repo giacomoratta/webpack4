@@ -6,12 +6,14 @@ import ReactDOMServer from 'react-dom/server'
 import AppRoot from '../components/AppRoot'
 
 const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
 
 // Webpack middleware only in DEV mode!
-if (!isProd) {
+if (isDev) {
   const webpack = require('webpack')
   const config = require('../../config/webpack.dev.js')
   const compiler = webpack(config)
+  require('webpack-mild-compile')(compiler)
 
   const webpackDevMiddleware = require('webpack-dev-middleware')(
     compiler,
@@ -26,37 +28,33 @@ if (!isProd) {
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
   console.log('Middleware enabled')
+} else {
+  const AppRoot = require('../components/AppRoot').default
+  const expressStaticGzip = require('express-static-gzip')
+  server.use(expressStaticGzip('dist', {
+    enableBrotli: true
+  }))
+
+  // Another piece of middleware
+  server.get('*', (req, res) => {
+    res.send(`
+      <html>
+        <head>
+          <link href="/main.css" rel="stylesheet" />
+          <title>Hello Title</title>
+        </head>
+        <body>
+          <div id="react-root">
+            ${ReactDOMServer.renderToString(<AppRoot />)}
+          </div>
+          <script src="vendor-bundle.js"></script>
+          <script src="main-bundle.js"></script>
+        </body>
+      </html>
+    `)
+  })
 }
 
-// In production, heroku will use only files in dist directory
-// ...but we need to build them first: npm run build
-// (replaced with gzip support) const staticMiddleware = express.static('dist')
-// (replaced with gzip support) server.use(staticMiddleware)
-const expressStaticGzip = require('express-static-gzip')
-server.use(expressStaticGzip('dist', {
-  enableBrotli: true
-}))
-
-// Another piece of middleware
-server.get('*', (req, res) => {
-  res.send(`
-  <html>
-    <head>
-      <link href="/main.css" rel="stylesheet" />
-      <title>Hello Title</title>
-    </head>
-    <body>
-      <div id="react-root">
-        ${ReactDOMServer.renderToString(<AppRoot />)}
-      </div>
-      <script src="vendor-bundle.js"></script>
-      <script src="main-bundle.js"></script>
-    </body>
-  </html>
-  `)
-})
-
-// env.PORT set by heroku
 const PORT = process.env.PORT || 8080
 
 server.listen(PORT, () => {
