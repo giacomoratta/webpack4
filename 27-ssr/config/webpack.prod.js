@@ -99,11 +99,11 @@ module.exports = {
         CUSTOM_VAR1: JSON.stringify('value1-prod')
       }
     }),
-    new HTMLWebpackPlugin({
-      template: './src/index.ejs',
-      inject: true,
-      title: "Link's Journal"
-    }),
+    // new HTMLWebpackPlugin({
+    //   template: './src/index.ejs',
+    //   inject: true,
+    //   title: "Link's Journal"
+    // }),
     new MinifyPlugin(),
     new UglifyJsPlugin(),
     new CompressionPlugin({

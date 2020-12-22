@@ -3,6 +3,7 @@ import path from 'path'
 const server = express()
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import AppRoot from '../components/AppRoot'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -27,12 +28,6 @@ if (!isProd) {
   console.log('Middleware enabled')
 }
 
-// Another piece of middleware
-server.get('*', (req, res) => {
-  const html = ReactDOMServer.renderToString(<div>Hello SSR!</div>)
-  res.send(html)
-})
-
 // In production, heroku will use only files in dist directory
 // ...but we need to build them first: npm run build
 // (replaced with gzip support) const staticMiddleware = express.static('dist')
@@ -41,6 +36,24 @@ const expressStaticGzip = require('express-static-gzip')
 server.use(expressStaticGzip('dist', {
   enableBrotli: true
 }))
+
+// Another piece of middleware
+server.get('*', (req, res) => {
+  res.send(`
+  <html>
+    <head>
+      <link href="/main.css" rel="stylesheet" />
+    </head>
+    <body>
+      <div id="react-root">
+        ${ReactDOMServer.renderToString(<AppRoot />)}
+      </div>
+      <script src="vendor-bundle.js"></script>
+      <script src="main-bundle.js"></script>
+    </body>
+  </html>
+  `)
+})
 
 // env.PORT set by heroku
 const PORT = process.env.PORT || 8080
