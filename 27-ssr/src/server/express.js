@@ -43,6 +43,7 @@ server.get('*', (req, res) => {
   <html>
     <head>
       <link href="/main.css" rel="stylesheet" />
+      <title>Hello Title</title>
     </head>
     <body>
       <div id="react-root">

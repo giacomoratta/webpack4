@@ -1,5 +1,5 @@
 import React from 'react'
-// import MarkdownData from '../../data/post.md'
+import MarkdownData from '../../data/post.md'
 
 export default class extends React.Component {
   constructor (props) {
@@ -9,7 +9,7 @@ export default class extends React.Component {
     }
   }
 
-  render1 () {
+  render () {
     return (
       <div className='profile'>
         <img src={require('../images/link.jpg')} />
@@ -20,7 +20,7 @@ export default class extends React.Component {
     )
   }
 
-  render () {
+  render1 () {
     return (
       <div className='profile'>
         <img src={""} />
