@@ -1,58 +1,47 @@
 import express from 'express'
-import path from 'path'
 const server = express()
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import AppRoot from '../components/AppRoot'
+import webpack from 'webpack'
+
+// Webpack configs
+import configDevClient from '../../config/webpack.dev-client.js'
+import configDevServer from '../../config/webpack.dev-server.js'
+import configProdClient from '../../config/webpack.prod-client.js'
+import configProdServer from '../../config/webpack.prod-server.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 
 // Webpack middleware only in DEV mode!
 if (isDev) {
-  const webpack = require('webpack')
-  const config = require('../../config/webpack.dev.js')
-  const compiler = webpack(config)
+  const compiler = webpack([configDevClient, configDevServer])
+  const clientCompiler = compiler.compilers[0]
+  const serverCompiler = compiler.compilers[1]
+
   require('webpack-mild-compile')(compiler)
 
   const webpackDevMiddleware = require('webpack-dev-middleware')(
     compiler,
-    config.devServer
+    configDevClient.devServer
   )
 
   const webpackHotMiddlware = require('webpack-hot-middleware')(
-    compiler,
-    config.devServer
+    clientCompiler,
+    configDevClient.devServer
   )
 
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
   console.log('Middleware enabled')
+
 } else {
-  const AppRoot = require('../components/AppRoot').default
+  const render = require('./render')
   const expressStaticGzip = require('express-static-gzip')
   server.use(expressStaticGzip('dist', {
     enableBrotli: true
   }))
 
   // Another piece of middleware
-  server.get('*', (req, res) => {
-    res.send(`
-      <html>
-        <head>
-          <link href="/main.css" rel="stylesheet" />
-          <title>Hello Title</title>
-        </head>
-        <body>
-          <div id="react-root">
-            ${ReactDOMServer.renderToString(<AppRoot />)}
-          </div>
-          <script src="vendor-bundle.js"></script>
-          <script src="main-bundle.js"></script>
-        </body>
-      </html>
-    `)
-  })
+  server.use('*', render())
 }
 
 const PORT = process.env.PORT || 8080

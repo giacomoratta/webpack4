@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
+  name: 'client',
   entry: {
     main: [
       'react-hot-loader/patch',
@@ -109,10 +110,10 @@ module.exports = {
         CUSTOM_VAR1: JSON.stringify('value1-dev')
       }
     }),
-    // new HTMLWebpackPlugin({
-    //   template: './src/index.ejs',
-    //   inject: true,
-    //   title: "Link's Journal"
-    // })
+    new HTMLWebpackPlugin({
+      template: './src/index.ejs',
+      inject: true,
+      title: "Link's Journal"
+    })
   ]
 }

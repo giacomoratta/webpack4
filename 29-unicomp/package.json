@@ -20,6 +20,7 @@
     "compression-webpack-plugin": "6.1.1",
     "css-loader": "^0.28.10",
     "ejs-loader": "0.3.1",
+    "express": "4.16.3",
     "express-static-gzip": "^2.1.0",
     "extract-loader": "1.0.2",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
@@ -42,6 +43,7 @@
     "webpack-dev-middleware": "2.0.6",
     "webpack-dev-server": "^3.0.0",
     "webpack-hot-middleware": "2.21.0",
+    "webpack-mild-compile": "3.1.0",
     "webpack-node-externals": "^2.5.2"
   },
   "scripts": {

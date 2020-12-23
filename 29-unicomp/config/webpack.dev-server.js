@@ -3,8 +3,9 @@ const webpack = require('webpack')
 const nodeExternal = require('webpack-node-externals')
 
 module.exports = {
+  name: 'server',
   entry: {
-    server: ['./src/server/main.js']
+    server: ['./src/server/render.js']
   },
   mode: 'production',
   output: {
