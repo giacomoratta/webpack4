@@ -4,12 +4,13 @@ const nodeExternal = require('webpack-node-externals')
 
 module.exports = {
   entry: {
-    server: ['./src/server/main.js']
+    server: ['./src/server/render.js']
   },
   mode: 'production',
   output: {
-    filename: '[name]-bundle.js',
+    filename: 'prod-server-bundle.js',
     path: path.resolve(__dirname, '../build'),
+    libraryTarget: 'commonjs2'
   },
 
   // target: default is 'web'

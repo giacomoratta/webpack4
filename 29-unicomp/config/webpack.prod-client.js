@@ -7,6 +7,7 @@ const MinifyPlugin = require('babel-minify-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -41,15 +42,18 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-            // options: { minimize: true } << there is a better solution for this!
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: 'css-loader'
+              // options: { minimize: true } << there is a better solution for this!
+            }
+          ]
+        })
       },
       {
         test: /\.jpg$/,
@@ -89,6 +93,7 @@ module.exports = {
 
   /* Plugins affect the entire bundle */
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css'

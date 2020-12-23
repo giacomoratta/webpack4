@@ -41,14 +41,15 @@ if (isDev) {
   console.log('Middleware enabled')
 
 } else {
-  const render = require('./render')
-  const expressStaticGzip = require('express-static-gzip')
-  server.use(expressStaticGzip('dist', {
-    enableBrotli: true
-  }))
+  webpack([configProdClient, configProdServer]).run((err, stats) => {
+    const render = require('../../build/prod-server-bundle.js').default
+    const expressStaticGzip = require('express-static-gzip')
+    server.use(expressStaticGzip('dist', {
+      enableBrotli: true
+    }))
 
-  // Another piece of middleware
-  server.use('*', render())
+    server.use(render())
+  })
 }
 
 const PORT = process.env.PORT || 8080
