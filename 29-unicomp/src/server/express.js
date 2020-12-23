@@ -1,6 +1,7 @@
 import express from 'express'
 const server = express()
 import webpack from 'webpack'
+import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 
 // Webpack configs
 import configDevClient from '../../config/webpack.dev-client.js'
@@ -24,13 +25,19 @@ if (isDev) {
     configDevClient.devServer
   )
 
-  const webpackHotMiddlware = require('webpack-hot-middleware')(
+  const webpackHotMiddleware = require('webpack-hot-middleware')(
+    clientCompiler,
+    configDevClient.devServer
+  )
+
+  const webpackHotMiddleware2 = require('webpack-hot-middleware')(
     clientCompiler,
     configDevClient.devServer
   )
 
   server.use(webpackDevMiddleware)
-  server.use(webpackHotMiddlware)
+  server.use(webpackHotMiddleware)
+  // server.use(webpackHotServerMiddleware(compiler))
   console.log('Middleware enabled')
 
 } else {

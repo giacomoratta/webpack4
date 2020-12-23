@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   name: 'client',
@@ -23,7 +24,8 @@ module.exports = {
   output: {
     filename: '[name]-bundle.js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: '/',
+    // libraryTarget: 'commonjs2'
   },
   devServer: {
     contentBase: 'dist',
@@ -58,14 +60,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
           }
-        ]
+        })
       },
       {
         test: /\.jpg$/,
@@ -103,6 +106,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

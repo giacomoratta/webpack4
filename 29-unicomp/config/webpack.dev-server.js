@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: '[name]-bundle.js',
     path: path.resolve(__dirname, '../build'),
+    libraryTarget: 'commonjs2'
   },
 
   // target: default is 'web'
@@ -38,7 +39,6 @@ module.exports = {
         use: [
           {
             loader: 'css-loader'
-            // options: { minimize: true } << there is a better solution for this!
           }
         ]
       },
@@ -48,7 +48,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]',
+              name: '/images/[name].[ext]',
 
               // avoid emitting image files with bundle
               emitFile: false
