@@ -1,5 +1,4 @@
 import express from 'express'
-const server = express()
 import webpack from 'webpack'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 
@@ -8,6 +7,7 @@ import configDevClient from '../../config/webpack.dev-client.js'
 import configDevServer from '../../config/webpack.dev-server.js'
 import configProdClient from '../../config/webpack.prod-client.js'
 import configProdServer from '../../config/webpack.prod-server.js'
+const server = express()
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
@@ -39,7 +39,6 @@ if (isDev) {
   server.use(webpackHotMiddleware)
   // server.use(webpackHotServerMiddleware(compiler))
   console.log('Middleware enabled')
-
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const render = require('../../build/prod-server-bundle.js').default
