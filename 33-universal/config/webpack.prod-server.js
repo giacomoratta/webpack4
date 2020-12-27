@@ -1,14 +1,17 @@
 const path = require('path')
 const webpack = require('webpack')
-const nodeExternal = require('webpack-node-externals')
+// const nodeExternal = require('webpack-node-externals')
+const externals = require('./node-externals')
 
 module.exports = {
+  name: 'server',
   entry: {
     server: ['./src/server/render.js']
   },
   mode: 'production',
   output: {
     filename: 'prod-server-bundle.js',
+    chunkFilename: '[name].js',
     path: path.resolve(__dirname, '../build'),
     libraryTarget: 'commonjs2'
   },
@@ -18,7 +21,8 @@ module.exports = {
   target: 'node',
 
   // everything in node_modules will be skipped
-  externals: nodeExternal(),
+  // externals: nodeExternal(),
+  externals,
 
   module: {
 
@@ -83,6 +87,10 @@ module.exports = {
 
   /* Plugins affect the entire bundle */
   plugins: [
+    // only one bundle = dev-server-bundle.js
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
