@@ -1,7 +1,9 @@
 import React from 'react'
 
 const getBundle = () => {
-  import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+  // no magic comments anymore >> /* webpackChunkName: "lodash" */
+  // ...thanks to babel plugin 'universal-import'
+  import('lodash').then(_ => {
     console.log('imported', _)
   })
 }
