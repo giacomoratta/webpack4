@@ -1,13 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -42,18 +40,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            {
-              loader: 'css-loader'
-              // options: { minimize: true } << there is a better solution for this!
-            }
-          ]
-        })
+        use: [
+          {
+            loader: ExtractCssChunks.loader
+          },
+          {
+            loader: 'css-loader'
+            // options: { minimize: true } << there is a better solution for this!
+          }
+        ]
       },
       {
         test: /\.jpg$/,
@@ -69,22 +64,8 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          // {
-          //   loader: 'html-loader'
-          // },
-          // {
-          //   loader: 'markdown-loader'
-          // }
           {
             loader: 'markdown-with-front-matter-loader'
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
           }
         ]
       }
@@ -93,22 +74,14 @@ module.exports = {
 
   /* Plugins affect the entire bundle */
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new ExtractCssChunks(/* not for prod! - { hot: true } */),
     new OptimizeCssAssetsPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash].css'
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         CUSTOM_VAR1: JSON.stringify('value1-prod')
       }
     }),
-    // new HTMLWebpackPlugin({
-    //   template: './src/index.ejs',
-    //   inject: true,
-    //   title: "Link's Journal"
-    // }),
     new MinifyPlugin(),
     new UglifyJsPlugin(),
     new CompressionPlugin({

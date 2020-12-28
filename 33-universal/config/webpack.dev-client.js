@@ -1,8 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 module.exports = {
   name: 'client',
@@ -61,15 +59,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              minimize: true
-            }
+        use: [
+          {
+            loader: ExtractCssChunks.loader
+            // loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
           }
-        })
+        ]
       },
       {
         test: /\.jpg$/,
@@ -85,12 +83,6 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          // {
-          //   loader: 'html-loader'
-          // },
-          // {
-          //   loader: 'markdown-loader'
-          // }
           {
             loader: 'markdown-with-front-matter-loader'
           }
@@ -100,25 +92,32 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          },
+          {
+            loader: 'extract-loader'
+          },
+          {
+            loader: 'html-loader',
+            options: {
+              attrs: ['img:src']
+            }
           }
         ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new ExtractCssChunks({ hot: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
         CUSTOM_VAR1: JSON.stringify('value1-dev')
       }
-    }),
-    new HTMLWebpackPlugin({
-      template: './src/index.ejs',
-      inject: true,
-      title: "Link's Journal"
     })
   ]
 }

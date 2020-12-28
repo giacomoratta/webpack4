@@ -63,22 +63,8 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          // {
-          //   loader: 'html-loader'
-          // },
-          // {
-          //   loader: 'markdown-loader'
-          // }
           {
             loader: 'markdown-with-front-matter-loader'
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
           }
         ]
       }

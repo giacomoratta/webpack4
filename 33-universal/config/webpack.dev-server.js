@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     server: ['./src/server/render.js']
   },
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: 'dev-server-bundle.js',
     chunkFilename: '[name].js',
@@ -62,22 +62,8 @@ module.exports = {
       {
         test: /\.md$/,
         use: [
-          // {
-          //   loader: 'html-loader'
-          // },
-          // {
-          //   loader: 'markdown-loader'
-          // }
           {
             loader: 'markdown-with-front-matter-loader'
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
           }
         ]
       }
@@ -92,8 +78,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-        CUSTOM_VAR1: JSON.stringify('value1-prod')
+        NODE_ENV: JSON.stringify('development'),
+        CUSTOM_VAR1: JSON.stringify('value1-dev')
       }
     })
   ]
