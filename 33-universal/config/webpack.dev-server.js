@@ -72,10 +72,13 @@ module.exports = {
 
   /* Plugins affect the entire bundle */
   plugins: [
+
     // only one bundle = dev-server-bundle.js
+    // very important for SSR!
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
+
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),

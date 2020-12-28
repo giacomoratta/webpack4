@@ -1,5 +1,6 @@
 import MarkdownData from '../../data/post.md'
 import React from 'react'
+import '../css/About.css'
 
 export default () => (
   <div className='profile'>

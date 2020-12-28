@@ -45,24 +45,33 @@ if (isDev) {
 
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
+
+  // ... this is also filtering chunks for us, but in prod we need to implement explicitly
   server.use(webpackHotServerMiddleware(compiler))
+
   console.log('Middleware enabled')
   compiler.plugin('done', done)
+
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
+
+    // more logs for production
     console.log(
       stats.toString({
         colors: true
       })
     )
-    const clientStats = stats.toJson().children[0]
+
     const render = require('../../build/prod-server-bundle.js').default
     server.use(
       expressStaticGzip('dist', {
         enableBrotli: true
       })
     )
+
+    const clientStats = stats.toJson().children[0]
     server.use(render({ clientStats }))
+
     done()
   })
 }

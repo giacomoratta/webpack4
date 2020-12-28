@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Gallery.css'
 
 const getBundle = () => {
   // no magic comments anymore >> /* webpackChunkName: "lodash" */
