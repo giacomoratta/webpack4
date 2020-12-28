@@ -1,6 +1,6 @@
 ---
-title: Our first Post
-author: Link
+title: About Zelda
+author: Zelda
 ---
 
 # Long Ago in the Kingdom of Hyrule
