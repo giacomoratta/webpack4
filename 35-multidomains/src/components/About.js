@@ -1,7 +1,5 @@
 import React from 'react'
 import '../css/About.css'
-const MarkdownData = require('../../data/post.md')
-const imagePath = require('../images/link.jpg')
 
 export default () => (
   <div>
