@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import universal from 'react-universal-component'
 import { Switch } from 'react-router'
 import '../css/nav.css'
+import NotFound from './NotFound'
 
 const UniversalComponent = universal(props => import(`./${props.page}`))
 
@@ -32,6 +33,7 @@ export default () => (
           return <UniversalComponent page='Article' site={site} match={match} />
         }}
       />
+      <Route component={NotFound} />
     </Switch>
   </div>
 )
