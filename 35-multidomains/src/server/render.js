@@ -17,8 +17,9 @@ export default ({ clientStats }) => (req, res) => {
     </StaticRouter>
   )
 
+  const names = flushChunkNames().concat([`css/${context.site}-theme-css`])
   const { js, styles, cssHash } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames()
+    chunkNames: names
   })
 
   res.send(`

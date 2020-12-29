@@ -7,6 +7,8 @@ export default (props) => {
   const MarkdownData = require(`../../data/${props.site}/bio.md`)
   const imagePath = require(`../images/${siteConfig.aboutImage}`)
 
+  import(`../css/${props.site}/theme.css`)
+
   return (
     <div>
       <div className='profile'>
