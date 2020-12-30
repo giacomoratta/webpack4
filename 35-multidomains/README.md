@@ -1,4 +1,4 @@
-# Multi-Domain site
+# Multi-Domain site and Redux
 
 #### DNS and hosts
 - Install `dnsmasq`
@@ -8,3 +8,8 @@
     127.0.0.1 link.local
     127.0.0.1 zelda.local
     ```
+  
+#### Differentiate by domains
+- Usage of `req.hostname` in server (for SSR)
+- Usage of `location.hostname` in react components
+- Different data and css per domain
