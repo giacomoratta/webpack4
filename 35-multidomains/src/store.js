@@ -3,4 +3,5 @@ import { testReducer } from './reducers'
 
 export default createStore(testReducer, {
   /* initial state - optional */
+  text: 'Test'
 })

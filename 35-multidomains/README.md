@@ -13,3 +13,8 @@
 - Usage of `req.hostname` in server (for SSR)
 - Usage of `location.hostname` in react components
 - Different data and css per domain
+
+### Redux
+- setup for client
+- setup for server rendering
+- connect components with redux + test redux

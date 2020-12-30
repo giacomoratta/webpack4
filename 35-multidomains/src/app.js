@@ -4,6 +4,7 @@ import AppRoot from './components/AppRoot'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import store from './store'
+import { actionTest } from './actions'
 
 function render (Component) {
   ReactDOM.hydrate(
@@ -15,6 +16,9 @@ function render (Component) {
     document.getElementById('react-root')
   )
 }
+
+store.dispatch(actionTest('New text'))
+
 render(AppRoot)
 
 if (module.hot) {
