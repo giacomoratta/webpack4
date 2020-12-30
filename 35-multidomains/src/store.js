@@ -1,7 +1,6 @@
 import { createStore } from 'redux'
 import { testReducer } from './reducers'
 
-export default createStore(testReducer, {
-  /* initial state - optional */
-  text: 'Test'
-})
+const enhancer = typeof window == 'object' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+export default createStore(testReducer, enhancer)

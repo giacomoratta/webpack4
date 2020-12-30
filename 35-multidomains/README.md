@@ -18,3 +18,4 @@
 - setup for client
 - setup for server rendering
 - connect components with redux + test redux
+- added redux devtools
