@@ -19,3 +19,8 @@
 - setup for server rendering
 - connect components with redux + test redux
 - added redux devtools
+
+# Redux-thunk
+- async actions
+- pull markdown data from API
+- `npm i cross-fetch` for platform agnostic API fetch

@@ -17,7 +17,7 @@ function render (Component) {
   )
 }
 
-store.dispatch(actionTest('New text'))
+// store.dispatch(actionTest('New text')) // not-needed anymore
 
 render(AppRoot)
 

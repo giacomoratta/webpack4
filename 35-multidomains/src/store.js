@@ -1,6 +1,18 @@
-import { createStore } from 'redux'
-import { testReducer } from './reducers'
+import { createStore, compose, applyMiddleware } from 'redux'
+import { fetchArticle } from './reducers'
+import thunk from 'redux-thunk'
 
-const enhancer = typeof window == 'object' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const composeEnhancers = typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  : compose
 
-export default createStore(testReducer, enhancer)
+const enhancer = composeEnhancers(applyMiddleware(thunk))
+
+export default createStore(fetchArticle, enhancer)
+
+/* This is just a bit of logic for devtools.
+Otherwise, the store would be created as:
+
+export default createStore(fetchArticle, compose(applyMiddleware(thunk)))
+*/
