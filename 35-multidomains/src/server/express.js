@@ -1,7 +1,10 @@
 import express from 'express'
 import path from 'path'
+import fs from 'fs'
 import webpack from 'webpack'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
+import marked from 'marked'
+import { loadFront } from 'yaml-front-matter'
 
 import configDevClient from '../../config/webpack.dev-client.js'
 import configDevServer from '../../config/webpack.dev-server.js'
@@ -28,7 +31,26 @@ const done = () => {
 }
 
 server.get('/api/articles/:slug', (req, res) => {
-  res.json(req.params.slug)
+  // res.json(req.params.slug) // basic test
+  try {
+    const site = req.hostname.split('.')[0] // e.g. link or zelda
+    const { slug } = req.params
+    if (!slug) {
+      throw new Error('No slug provided')
+    }
+    const file = path.resolve(__dirname, `../../data/${site}/${slug}.md`)
+    fs.readFile(file, 'utf-8', (err, data) => {
+      if (err) {
+        res.status(404).send(err)
+        return
+      }
+      const obj = loadFront(data)
+      obj.__content = marked(obj.__content)
+      res.json(obj)
+    })
+  } catch (error) {
+    res.status(404).send(error)
+  }
 })
 
 if (isDev) {

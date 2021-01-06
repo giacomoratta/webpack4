@@ -21,24 +21,20 @@ class Article extends React.Component {
   }
 
   render () {
-    // const siteConfig = require(`../../data/${this.props.site}/siteConfig`)
-    import(`../css/${this.props.site}/theme.css`)
-
     try {
-      // const MarkdownData = require(`../../data/${this.props.site}/${this.props.match.params.slug}.md`)
-      // const posterStyle = {
-      //   backgroundImage: `url(${MarkdownData.posterImage})`
-      // }
+      const billboardStyle = {
+        backgroundImage: `url(${this.props.posterImage})`
+      }
 
+      import(`../css/${this.props.site}/theme.css`)
       return (
-        <div>
-          <div className='Article'>
-            <h1>{this.props.__content}</h1>
-            <div
-              className='content'
-              dangerouslySetInnerHTML={{ __html: this.props.__content }}
-            />
-          </div>
+        <div className='Article'>
+          <div className='billboard' style={billboardStyle} />
+          <h1>{this.props.title}</h1>
+          <div
+            className='content'
+            dangerouslySetInnerHTML={{ __html: this.props.__content }}
+          />
         </div>
       )
     } catch (error) {
@@ -50,6 +46,6 @@ class Article extends React.Component {
 export default connect((state) => {
   /* return all props used by the component */
   return {
-    __content: state.content
+    ...state.content // spread the content json over the props
   }
 })(Article)

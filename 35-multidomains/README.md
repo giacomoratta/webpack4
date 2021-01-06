@@ -24,3 +24,7 @@
 - async actions
 - pull markdown data from API
 - `npm i cross-fetch` for platform agnostic API fetch
+
+# Redux-client
+- focusing on the express endpoint that servers the markdown
+- install libraries for loading markdown: `npm i marked yaml-front-matter`
