@@ -28,3 +28,4 @@
 # Redux-client
 - focusing on the express endpoint that servers the markdown
 - install libraries for loading markdown: `npm i marked yaml-front-matter`
+- set hot-reloading about reducers

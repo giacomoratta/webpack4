@@ -18,6 +18,7 @@ export const testReducer = (state = {}, action) => {
 export const fetchArticle = (state = {}, action) => {
   switch (action.type) {
     case FETCH_SUCCESS:
+      // action.payload.test = 'test!'
       return {
         ...state,
         content: action.payload

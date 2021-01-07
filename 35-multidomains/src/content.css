@@ -2,7 +2,6 @@
   background-color: #ffffe0;
   box-shadow: 0 0 20px black;
   font-family: sans-serif;
-  line-height: 1.5em;
   max-width: 740px;
   margin: 0 auto;
   padding: 20px;
@@ -12,6 +11,8 @@
   grid-gap: 40px;
   font-size: 1.2em;
   line-height: 2em;
+  position: relative;
+  z-index: 1;
 }
 
 .content img {
