@@ -11,12 +11,19 @@ class Article extends React.Component {
     super(props)
   }
 
-  componentDidMount () {
-    // dispatch comes from connect (see below)
-    // unfortunately... it will only works once (unless press F5)
-    this.props.dispatch(fetchArticle(
-      this.props.site,
-      this.props.match.params.slug
+  // componentDidMount () {
+  //   // dispatch comes from connect (see below)
+  //   // unfortunately... it will only works once (unless press F5)
+  //   this.props.dispatch(fetchArticle(
+  //     this.props.site,
+  //     this.props.match.params.slug
+  //   ))
+  // }
+
+  componentWillReceiveProps(props) {
+    props.dispatch(fetchArticle(
+         props.site,
+         props.match.params.slug
     ))
   }
 

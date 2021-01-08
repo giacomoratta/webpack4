@@ -29,3 +29,8 @@
 - focusing on the express endpoint that servers the markdown
 - install libraries for loading markdown: `npm i marked yaml-front-matter`
 - set hot-reloading about reducers
+
+# Redux-server
+- setup ssr with redux
+- `ReferenceError: regeneratorRuntime is not defined` because async/await not recognized
+- solution = `npm i babel-plugin-transform-async-to-promises@^0.6.1`

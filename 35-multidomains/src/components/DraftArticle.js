@@ -3,10 +3,12 @@ import '../css/Article.css'
 import NotFound from './NotFound'
 
 export default (props) => {
-  const siteConfig = require(`../../data/${props.site}/siteConfig`)
   import(`../css/${props.site}/theme.css`)
 
   try {
+    // 'require' of draft article is the main difference with Article component.
+    // Article component fetch the article via redux, request, etc.
+
     const MarkdownData = require(`../../data/${props.site}/${props.match.params.slug}.md`)
     const posterStyle = {
       backgroundImage: `url(${MarkdownData.posterImage})`

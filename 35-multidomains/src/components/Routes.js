@@ -14,6 +14,8 @@ export default () => (
       <Link to='/about'>About</Link>
       <Link to='/article/post'>Article</Link>
       <Link to='/article/post2'>Article 2</Link>
+      <Link to='/draft/post'>Draft</Link>
+      <Link to='/draft/post2'>Draft 2</Link>
     </div>
     <Switch>
       <Route exact path='/'>
@@ -31,6 +33,13 @@ export default () => (
         render={({ staticContext, match /* parameters, like :slug */ }) => {
           const site = staticContext ? staticContext.site : location.hostname.split('.')[0]
           return <UniversalComponent page='Article' site={site} match={match} />
+        }}
+      />
+      <Route
+        path='/draft/:slug'
+        render={({ staticContext, match /* parameters, like :slug */ }) => {
+          const site = staticContext ? staticContext.site : location.hostname.split('.')[0]
+          return <UniversalComponent page='DraftArticle' site={site} match={match} />
         }}
       />
       <Route component={NotFound} />

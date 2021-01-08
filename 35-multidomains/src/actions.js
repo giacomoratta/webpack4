@@ -10,12 +10,15 @@ export const actionTest = (text) => {
 export const fetchArticle = (site, slug) => {
   // dispatch from the store
   // this is what redux-thunk add
-  return (dispatch) => {
+  return async (dispatch) => {
     if (!site || !slug) return
-    fetch(`http://${site}.local:8080/api/articles/${slug}`)
-      .then(res => res.json()) // res.json() returns a Promise
-      .then(data => dispatch(fetchSuccess(data)))
-      .catch(err => dispatch(fetchFailure(err)))
+    try {
+      const res = await fetch(`http://${site}.local:8080/api/articles/${slug}`)
+      const items = await res.json()
+      dispatch(fetchSuccess(items))
+    } catch (err) {
+      dispatch(fetchFailure(err))
+    }
   }
   // fetchSuccess and fetchFailure will update the state as normal action does
 }

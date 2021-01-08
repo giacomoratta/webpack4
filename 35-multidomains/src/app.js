@@ -4,9 +4,8 @@ import AppRoot from './components/AppRoot'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import configureStore from './store'
-import { actionTest } from './actions'
 
-const store = configureStore({})
+const store = configureStore(window.INITIAL_STATE || {})
 
 function render (Component) {
   ReactDOM.hydrate(
